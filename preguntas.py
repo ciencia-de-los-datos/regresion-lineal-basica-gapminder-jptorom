@@ -13,11 +13,11 @@ def pregunta_01():
     Complete el código presentado a continuación.
     """
     # Lea el archivo `gm_2008_region.csv` y asignelo al DataFrame `df`
-    df = pd.read_csv("gm_2008_region.csv")
+    df = pd.read_csv('gm_2008_region.csv')
 
     # Asigne la columna "life" a `y` y la columna "fertility" a `X`
-    y = df["life"]
-    X = df["fertility"]
+    y = df['life']
+    X = df['fertility']
 
     # Imprima las dimensiones de `y`
     print(y.shape)
@@ -26,10 +26,10 @@ def pregunta_01():
     print(X.shape)
 
     # Transforme `y` a un array de numpy usando reshape
-    y_reshaped = y.reshape(y.values, (139,1))
+    y_reshaped = y.values.reshape(139, 1)
 
     # Trasforme `X` a un array de numpy usando reshape
-    X_reshaped = X.reshape(x.values, (139,1))
+    X_reshaped = X.values.reshape(139, 1)
 
     # Imprima las nuevas dimensiones de `y`
     print(y_reshaped.shape)
@@ -45,7 +45,7 @@ def pregunta_02():
     """
 
     # Lea el archivo `gm_2008_region.csv` y asignelo al DataFrame `df`
-    df = pd.read_csv("gm_2008_region.csv")
+    df = pd.read_csv('gm_2008_region.csv')
 
     # Imprima las dimensiones del DataFrame
     print(df.shape)
@@ -57,7 +57,7 @@ def pregunta_02():
     print(round(df['life'].mean(),4))
 
     # Imprima el tipo de dato de la columna `fertility`.
-    print(type(df['fertility']))
+    print(type(df['life']))
 
     # Imprima la correlación entre las columnas `GDP` y `life` con 4 decimales.
     print(round(df['GDP'].corr(df['life']),4))
@@ -70,13 +70,13 @@ def pregunta_03():
     """
 
     # Lea el archivo `gm_2008_region.csv` y asignelo al DataFrame `df`
-    df = pd.read_csv("gm_2008_region.csv")
+    df = pd.read_csv('gm_2008_region.csv') 
 
     # Asigne a la variable los valores de la columna `fertility`
-    X_fertility = df["fertility"].values.reshape(139, 1)
+    X_fertility = df['fertility'].values.reshape(139, 1)
 
     # Asigne a la variable los valores de la columna `life`
-    y_life = df["life"].values.reshape(139, 1)
+    y_life = df['life'].values.reshape(139, 1)
 
     # Importe LinearRegression
     from sklearn.linear_model import LinearRegression
@@ -86,7 +86,6 @@ def pregunta_03():
 
     # Cree El espacio de predicción. Esto es, use linspace para crear
     # un vector con valores entre el máximo y el mínimo de X_fertility
-    # Al usar -1 en reshape dejo que numpy calcule el tamaño adecuado de la dimension
     prediction_space = np.linspace(
         min(X_fertility),
         max(X_fertility),
@@ -109,35 +108,35 @@ def pregunta_04():
     """
 
     # Importe LinearRegression
-    # Importe train_test_split
-    # Importe mean_squared_error
     from sklearn.linear_model import LinearRegression
+    # Importe train_test_split
     from sklearn.model_selection import train_test_split
+    # Importe mean_squared_error
     from sklearn.metrics import mean_squared_error
 
     # Lea el archivo `gm_2008_region.csv` y asignelo al DataFrame `df`
-    df = pd.read_csv("gm_2008_region.csv")
+    df = pd.read_csv('gm_2008_region.csv')
 
     # Asigne a la variable los valores de la columna `fertility`
-    X_fertility = df["fertility"].values.reshape(139, 1)
+    X_fertility = df['fertility'].values.reshape(139, 1)
 
     # Asigne a la variable los valores de la columna `life`
-    y_life = df["life"].values.reshape(139, 1)
+    y_life = df['life'].values.reshape(139, 1)
 
     # Divida los datos de entrenamiento y prueba. La semilla del generador de números
     # aleatorios es 53. El tamaño de la muestra de entrenamiento es del 80%
     (X_train, X_test, y_train, y_test,) = train_test_split(
         X_fertility,
         y_life,
-        test_size= 0.2,
+        test_size=0.2,
         random_state=53,
-    )
+    ) 
 
     # Cree una instancia del modelo de regresión lineal
-    linearRegression = LinearRegression
+    linearRegression = LinearRegression()
 
     # Entrene el clasificador usando X_train y y_train
-    LinearRegression.fit(X_train, y_train)
+    linearRegression.fit(X_train, y_train)
 
     # Pronostique y_test usando X_test
     y_pred = linearRegression.predict(X_test)
