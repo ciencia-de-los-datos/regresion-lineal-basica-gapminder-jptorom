@@ -19,23 +19,13 @@ def pregunta_01():
     y = df['life']
     X = df['fertility']
 
-    # Imprima las dimensiones de `y`
-    print(y.shape)
-
-    # Imprima las dimensiones de `X`
-    print(X.shape)
-
     # Transforme `y` a un array de numpy usando reshape
     y_reshaped = y.values.reshape(139, 1)
 
     # Trasforme `X` a un array de numpy usando reshape
     X_reshaped = X.values.reshape(139, 1)
 
-    # Imprima las nuevas dimensiones de `y`
-    print(y_reshaped.shape)
-
-    # Imprima las nuevas dimensiones de `X`
-    print(X_reshaped.shape)
+    return y.shape, X.shape, y_reshaped.shape, X_reshaped.shape
 
 
 def pregunta_02():
